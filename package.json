@@ -1,0 +1,32 @@
+{
+  "name": "opencode-oneprovider",
+  "version": "0.1.0",
+  "description": "OneProvider plugin for OpenCode - unified access to Claude, DeepSeek, GLM, GPT and more with pre-configured models, pricing, and auth",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^1.0.0",
+    "@opencode-ai/plugin": "^0.15.31"
+  }
+}
