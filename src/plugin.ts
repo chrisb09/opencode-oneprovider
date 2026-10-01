@@ -7,6 +7,37 @@ import {
 } from "./constants";
 import { ONEPROVIDER_DEFAULT_MODELS } from "./models";
 
+const MAX_RETRY_ATTEMPTS = 3;
+const RETRYABLE_STATUS_CODES = new Set([408, 409, 425, 429, 500, 502, 503, 504, 529]);
+
+function requestUrl(input: RequestInfo | URL): string {
+  if (typeof input === "string") return input;
+  if (input instanceof URL) return input.toString();
+  return input.url;
+}
+
+function retryDelay(response: Response | undefined, attempt: number): number {
+  const retryAfter = response?.headers.get("retry-after");
+  if (retryAfter) {
+    const seconds = Number(retryAfter);
+    if (Number.isFinite(seconds) && seconds >= 0) return Math.min(seconds * 1000, 30_000);
+
+    const date = Date.parse(retryAfter);
+    if (!Number.isNaN(date)) return Math.min(Math.max(date - Date.now(), 0), 30_000);
+  }
+
+  // Exponential backoff with jitter prevents synchronized retries after an outage.
+  return Math.min(1_000 * 2 ** attempt + Math.floor(Math.random() * 250), 10_000);
+}
+
+function isRetryable(response: Response): boolean {
+  return RETRYABLE_STATUS_CODES.has(response.status);
+}
+
+async function sleep(milliseconds: number): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
 export const plugin: Plugin = async ({ client, directory }) => {
   return {
     auth: {
@@ -21,8 +52,36 @@ export const plugin: Plugin = async ({ client, directory }) => {
           (providerOptions?.apiKey as string | undefined) ||
           "";
 
+        const baseURL =
+          process.env.ONEPROVIDER_BASE_URL ||
+          (providerOptions?.baseURL as string | undefined) ||
+          ONEPROVIDER_DEFAULT_BASE_URL;
+        const baseOrigin = new URL(baseURL).origin;
+
         return {
           apiKey,
+          async fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+            // Only OneProvider requests are retried. Other provider traffic must retain
+            // its native behavior, even when it happens to use the same AI SDK process.
+            if (new URL(requestUrl(input)).origin !== baseOrigin) return fetch(input, init);
+
+            let lastError: unknown;
+            for (let attempt = 0; attempt < MAX_RETRY_ATTEMPTS; attempt++) {
+              try {
+                const response = await fetch(input, init);
+                if (!isRetryable(response) || attempt === MAX_RETRY_ATTEMPTS - 1) return response;
+
+                await sleep(retryDelay(response, attempt));
+              } catch (error) {
+                lastError = error;
+                if (attempt === MAX_RETRY_ATTEMPTS - 1) throw error;
+
+                await sleep(retryDelay(undefined, attempt));
+              }
+            }
+
+            throw lastError;
+          },
         };
       },
       methods: [
