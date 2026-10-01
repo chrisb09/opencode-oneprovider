@@ -1,0 +1,147 @@
+# Maps OneProvider default model IDs to their Artificial Analysis dataset entries.
+# Each variant's aa_name must match exactly the "name" field in the AA API response.
+# effort: short label used in the README benchmark table (sorted low → max).
+# When AA adds data for a new model, add its variants here and run: python scripts/plot.py --refresh
+
+models:
+  - id: claude-fable-5-1
+    label: "Fable 5.1"
+    color: "#c07b2a"
+    variants:
+      - aa_name: "Claude Fable 5.1 (Adaptive Reasoning, Low Effort, Default Fallback)"
+        effort: "low"
+      - aa_name: "Claude Fable 5.1 (Adaptive Reasoning, Medium Effort, Default Fallback)"
+        effort: "medium"
+      - aa_name: "Claude Fable 5.1 (Adaptive Reasoning, High Effort, Default Fallback)"
+        effort: "high"
+      - aa_name: "Claude Fable 5.1 (Adaptive Reasoning, Xhigh Effort, Default Fallback)"
+        effort: "xhigh"
+      - aa_name: "Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)"
+        effort: "max"
+
+  - id: claude-opus-5-5
+    label: "Opus 5.5"
+    color: "#9b4dca"
+    variants:
+      - aa_name: "Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)"
+        effort: "low"
+      - aa_name: "Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)"
+        effort: "medium"
+      - aa_name: "Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)"
+        effort: "high"
+      - aa_name: "Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)"
+        effort: "xhigh"
+      - aa_name: "Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)"
+        effort: "max"
+
+  - id: claude-sonnet-5-5
+    label: "Sonnet 5.5"
+    color: "#e040b0"
+    variants:
+      - aa_name: "Claude Sonnet 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)"
+        effort: "medium"
+      - aa_name: "Claude Sonnet 5.5 (Adaptive Reasoning, High Effort, Default Fallback)"
+        effort: "high"
+      - aa_name: "Claude Sonnet 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)"
+        effort: "xhigh"
+      - aa_name: "Claude Sonnet 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)"
+        effort: "max"
+
+  - id: claude-haiku-4-5
+    label: "Haiku 4.5"
+    color: "#4db8e8"
+    variants:
+      - aa_name: "Claude 4.5 Haiku (Non-reasoning)"
+        effort: "non-reasoning"
+      - aa_name: "Claude 4.5 Haiku (Reasoning)"
+        effort: "reasoning"
+
+  - id: deepseek-v4-pro
+    label: "DS V4 Pro"
+    color: "#e06c00"
+    variants:
+      - aa_name: "DeepSeek V4 Pro 0424 (Non-reasoning)"
+        effort: "non-reasoning"
+      - aa_name: "DeepSeek V4 Pro 0424 (High)"
+        effort: "high"
+      - aa_name: "DeepSeek V4 Pro 0424 (Max)"
+        effort: "max"
+      - aa_name: "DeepSeek V4 Pro 0813 (Max)"
+        effort: "max (0813)"
+
+  - id: deepseek-v4-flash
+    label: "DS V4 Flash"
+    color: "#f0a040"
+    variants:
+      - aa_name: "DeepSeek V4 Flash 0420 (Non-reasoning)"
+        effort: "non-reasoning"
+      - aa_name: "DeepSeek V4 Flash 0420 (High)"
+        effort: "high"
+      - aa_name: "DeepSeek V4 Flash 0420 (Max)"
+        effort: "max"
+      - aa_name: "DeepSeek V4 Flash 0731 (Max)"
+        effort: "max (0731)"
+
+  - id: glm-5.3
+    label: "GLM 5.3"
+    color: "#2ab05a"
+    variants:
+      - aa_name: "GLM-5.3 (Low)"
+        effort: "low"
+      - aa_name: "GLM-5.3 (Max)"
+        effort: "max"
+
+  - id: glm-5.3-flash
+    label: "GLM 5.3 Flash"
+    color: "#88d4a8"
+    variants: []
+    # No AA data yet — will auto-populate on next --refresh once AA adds GLM-5.3-Flash
+
+  - id: gpt-6-luna
+    label: "GPT-6 Luna"
+    color: "#0072c6"
+    variants:
+      - aa_name: "GPT-6 Luna (Non-reasoning)"
+        effort: "non-reasoning"
+      - aa_name: "GPT-6 Luna (Low)"
+        effort: "low"
+      - aa_name: "GPT-6 Luna (Medium)"
+        effort: "medium"
+      - aa_name: "GPT-6 Luna (High)"
+        effort: "high"
+      - aa_name: "GPT-6 Luna (Xhigh)"
+        effort: "xhigh"
+      - aa_name: "GPT-6 Luna (Max)"
+        effort: "max"
+
+  - id: gpt-6.1-sol
+    label: "GPT-6.1 Sol"
+    color: "#005a9e"
+    variants:
+      - aa_name: "GPT-6.1 Sol (Low)"
+        effort: "low"
+      - aa_name: "GPT-6.1 Sol (Medium)"
+        effort: "medium"
+      - aa_name: "GPT-6.1 Sol (High)"
+        effort: "high"
+      - aa_name: "GPT-6.1 Sol (Xhigh)"
+        effort: "xhigh"
+      - aa_name: "GPT-6.1 Sol (Max)"
+        effort: "max"
+
+  - id: gpt-5.6-terra
+    label: "GPT-5.6 Terra"
+    color: "#50a0e0"
+    variants:
+      - aa_name: "GPT-5.6 Terra (Non-reasoning)"
+        effort: "non-reasoning"
+      - aa_name: "GPT-5.6 Terra (Low)"
+        effort: "low"
+      - aa_name: "GPT-5.6 Terra (Medium)"
+        effort: "medium"
+      - aa_name: "GPT-5.6 Terra (High)"
+        effort: "high"
+      - aa_name: "GPT-5.6 Terra (Xhigh)"
+        effort: "xhigh"
+      - aa_name: "GPT-5.6 Terra (Max)"
+        effort: "max"
