@@ -14,11 +14,11 @@ Benchmark data from [Artificial Analysis](https://artificialanalysis.ai). X-axis
 
 **Intelligence Index vs. Cost**
 
-![Intelligence Index vs Cost](scripts/plots/intelligence.png)
+![Intelligence Index vs Cost](scripts/plots/intelligence.svg)
 
 **Coding Index vs. Cost**
 
-![Coding Index vs Cost](scripts/plots/coding.png)
+![Coding Index vs Cost](scripts/plots/coding.svg)
 
 ---
 

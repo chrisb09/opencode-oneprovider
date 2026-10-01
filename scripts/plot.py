@@ -325,7 +325,7 @@ def generate_plot(
         "Intelligence Index" if metric == "intel" else "Coding Index"
     )
 
-    fig, ax = plt.subplots(figsize=(13, 8.5), dpi=300)
+    fig, ax = plt.subplots(figsize=(13, 8.5))
     fig.patch.set_facecolor("#fafafa")
     ax.set_facecolor("#ffffff")
 
@@ -419,7 +419,7 @@ def generate_plot(
 
     plt.tight_layout(rect=(0.02, 0.03, 0.98, 0.94))
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.savefig(output_path, bbox_inches="tight")
     plt.close(fig)
     print(f"  Saved: {output_path}")
 
@@ -600,8 +600,8 @@ def main() -> None:
 
     # 4. Generate plots
     print("\nGenerating plots...")
-    generate_plot(model_data, "intel", cache, PLOTS_DIR / "intelligence.png")
-    generate_plot(model_data, "coding", cache, PLOTS_DIR / "coding.png")
+    generate_plot(model_data, "intel", cache, PLOTS_DIR / "intelligence.svg")
+    generate_plot(model_data, "coding", cache, PLOTS_DIR / "coding.svg")
 
     # 5. Generate tables
     print("\nGenerating README tables...")
