@@ -24,5 +24,9 @@ export interface OneProviderModelDefinition {
   interleaved?: boolean | string | { field: string };
   limit?: ModelLimit;
   cost?: ModelCost;
+  provider?: {
+    npm?: string;
+    api?: string;
+  };
   variants?: Record<string, unknown>;
 }

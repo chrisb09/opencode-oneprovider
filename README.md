@@ -25,8 +25,12 @@ Benchmark data from [Artificial Analysis](https://artificialanalysis.ai). X-axis
 ## Features
 
 - **Zero Boilerplate**: Injects `oneprovider` provider configuration into OpenCode automatically. No need to maintain huge model blocks in your `opencode.jsonc`.
+- **Multi-Adapter Routing & Prompt Caching**:
+  - Claude models are routed to `@ai-sdk/anthropic` with native Anthropic Messages API (`/v1/messages`), enabling prompt caching breakpoints and adaptive reasoning controls.
+  - GPT, DeepSeek, GLM, and other models use `@ai-sdk/openai` (`/v1/chat/completions`).
 - **Accurate Token Pricing**: All models are pre-configured with exact input, output, cache-read, and cache-write rates based on the [OneProvider pricing table](https://oneprovider.dev/pricing#model-rates).
 - **Accurate Context Windows**: Models are configured with true context limits (up to 1M+ tokens) and appropriate output ceilings.
+- **Resilient Request Fetching**: Scoped automatic retries with exponential backoff and jitter for transient gateway errors (429 rate limits, 502/503/504 gateway errors), plus dual header authentication (`x-api-key` and `Authorization: Bearer`).
 - **Secure Key Management**:
   - `opencode auth login` (stored in OpenCode's secure auth store)
   - `ONEPROVIDER_API_KEY` environment variable

@@ -1,3 +1,4 @@
+import { ONEPROVIDER_ANTHROPIC_NPM } from "./constants";
 import type { OneProviderModelDefinition } from "./types";
 
 /**
@@ -11,6 +12,9 @@ export const ONEPROVIDER_DEFAULT_MODELS: Record<string, OneProviderModelDefiniti
     attachment: true,
     tool_call: true,
     reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: {
       context: 1_048_576,
       output: 65_536,
@@ -27,6 +31,9 @@ export const ONEPROVIDER_DEFAULT_MODELS: Record<string, OneProviderModelDefiniti
     attachment: true,
     tool_call: true,
     reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: {
       context: 1_000_000,
       output: 128_000,
@@ -42,6 +49,9 @@ export const ONEPROVIDER_DEFAULT_MODELS: Record<string, OneProviderModelDefiniti
     name: "Claude Sonnet 5.5 (OneProvider)",
     attachment: true,
     tool_call: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: {
       context: 1_000_000,
       output: 65_536,
@@ -57,6 +67,9 @@ export const ONEPROVIDER_DEFAULT_MODELS: Record<string, OneProviderModelDefiniti
     name: "Claude Haiku 4.5 (OneProvider)",
     attachment: false,
     tool_call: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: {
       context: 204_800,
       output: 8_192,
@@ -198,6 +211,9 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     attachment: true,
     tool_call: true,
     reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: { context: 1_048_576, output: 65_536 },
     cost: { input: 5.0, output: 25.0, cache_read: 0.5, cache_write: 6.25 },
   },
@@ -206,6 +222,9 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     attachment: true,
     tool_call: true,
     reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: { context: 1_048_576, output: 65_536 },
     cost: { input: 2.0, output: 10.0, cache_read: 0.2, cache_write: 2.5 },
   },
@@ -214,6 +233,9 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     attachment: true,
     tool_call: true,
     reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: { context: 1_048_576, output: 65_536 },
     cost: { input: 10.0, output: 50.0, cache_read: 1.0, cache_write: 12.5 },
   },
@@ -221,6 +243,9 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     name: "Claude Opus 4.8 (OneProvider)",
     attachment: true,
     tool_call: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: { context: 1_048_576, output: 65_536 },
     cost: { input: 5.0, output: 25.0, cache_read: 0.5, cache_write: 6.25 },
   },
@@ -228,6 +253,9 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     name: "Claude Opus 4.7 (OneProvider)",
     attachment: true,
     tool_call: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: { context: 1_048_576, output: 128_000 },
     cost: { input: 5.0, output: 25.0, cache_read: 0.5, cache_write: 6.25 },
   },
@@ -235,6 +263,9 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     name: "Claude Opus 4.6 (OneProvider)",
     attachment: true,
     tool_call: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: { context: 1_048_576, output: 128_000 },
     cost: { input: 4.0, output: 20.0, cache_read: 0.2, cache_write: 5.0 },
   },
@@ -242,6 +273,9 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     name: "Claude Sonnet 4.6 (OneProvider)",
     attachment: true,
     tool_call: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
     limit: { context: 1_048_576, output: 65_536 },
     cost: { input: 3.0, output: 15.0, cache_read: 0.3, cache_write: 3.75 },
   },

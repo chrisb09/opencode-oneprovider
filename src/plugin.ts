@@ -4,6 +4,7 @@ import {
   ONEPROVIDER_DEFAULT_NAME,
   ONEPROVIDER_DEFAULT_BASE_URL,
   ONEPROVIDER_DEFAULT_NPM,
+  ONEPROVIDER_ANTHROPIC_NPM,
 } from "./constants";
 import { ONEPROVIDER_DEFAULT_MODELS } from "./models";
 
@@ -65,10 +66,25 @@ export const plugin: Plugin = async ({ client, directory }) => {
             // its native behavior, even when it happens to use the same AI SDK process.
             if (new URL(requestUrl(input)).origin !== baseOrigin) return fetch(input, init);
 
+            const headers = new Headers(init?.headers);
+            if (apiKey) {
+              if (!headers.has("x-api-key")) {
+                headers.set("x-api-key", apiKey);
+              }
+              if (!headers.has("authorization")) {
+                headers.set("authorization", `Bearer ${apiKey}`);
+              }
+            }
+
+            const requestInit: RequestInit = {
+              ...init,
+              headers,
+            };
+
             let lastError: unknown;
             for (let attempt = 0; attempt < MAX_RETRY_ATTEMPTS; attempt++) {
               try {
-                const response = await fetch(input, init);
+                const response = await fetch(input, requestInit);
                 if (!isRetryable(response) || attempt === MAX_RETRY_ATTEMPTS - 1) return response;
 
                 await sleep(retryDelay(response, attempt));
@@ -138,6 +154,27 @@ export const plugin: Plugin = async ({ client, directory }) => {
         existingOptions.apiKey ||
         undefined;
 
+      const mergedModels: Record<string, any> = {
+        ...ONEPROVIDER_DEFAULT_MODELS,
+        ...existingModels,
+      };
+
+      for (const [id, model] of Object.entries(mergedModels)) {
+        const lower = id.toLowerCase();
+        if (
+          (lower.startsWith("claude-") || lower.includes("anthropic")) &&
+          (!model.provider || !model.provider.npm)
+        ) {
+          mergedModels[id] = {
+            ...model,
+            provider: {
+              ...(model.provider || {}),
+              npm: ONEPROVIDER_ANTHROPIC_NPM,
+            },
+          };
+        }
+      }
+
       cfg.provider[ONEPROVIDER_PROVIDER_ID] = {
         name: existing.name || ONEPROVIDER_DEFAULT_NAME,
         npm: existing.npm || ONEPROVIDER_DEFAULT_NPM,
@@ -150,10 +187,7 @@ export const plugin: Plugin = async ({ client, directory }) => {
           ...(resolvedApiKey ? { apiKey: resolvedApiKey } : {}),
           ...existingOptions,
         },
-        models: {
-          ...ONEPROVIDER_DEFAULT_MODELS,
-          ...existingModels,
-        },
+        models: mergedModels,
       };
     },
   };
