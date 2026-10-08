@@ -138,7 +138,7 @@ Intelligence and coding scores from [Artificial Analysis](https://artificialanal
 |---|---|---|---|---|---|---|---|
 | `oneprovider/claude-fable-5-1` | Claude Fable 5.1 | 1M | 65K | $10.00 | $50.00 | $0.25 | $12.50 |
 | `oneprovider/claude-opus-5-5` | Claude Opus 5.5 | 1M | 128K | $4.00 | $20.00 | $0.20 | $5.00 |
-| `oneprovider/claude-sonnet-5-5` | Claude Sonnet 5.5 | 1M | 65K | $1.00 | $5.00 | $0.10 | $1.25 |
+| `oneprovider/claude-sonnet-5-5` | Claude Sonnet 5.5 | 1M | 65K | $2.00 | $10.00 | $0.20 | $2.50 |
 | `oneprovider/claude-haiku-4-5` | Claude Haiku 4.5 | 204K | 8K | $1.00 | $5.00 | $0.10 | $1.25 |
 | `oneprovider/deepseek-v4-pro` | DeepSeek V4 Pro | 1M | 8K | $0.66 | $1.98 | $0.022 | $0.66 |
 | `oneprovider/deepseek-v4-flash` | DeepSeek V4 Flash | 1M | 8K | $0.22 | $0.66 | $0.007 | $0.22 |

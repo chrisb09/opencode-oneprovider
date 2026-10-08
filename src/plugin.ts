@@ -61,6 +61,7 @@ export const plugin: Plugin = async ({ client, directory }) => {
 
         return {
           apiKey,
+          baseURL,
           async fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
             // Only OneProvider requests are retried. Other provider traffic must retain
             // its native behavior, even when it happens to use the same AI SDK process.

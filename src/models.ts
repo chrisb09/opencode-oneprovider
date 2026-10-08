@@ -57,10 +57,10 @@ export const ONEPROVIDER_DEFAULT_MODELS: Record<string, OneProviderModelDefiniti
       output: 65_536,
     },
     cost: {
-      input: 1.0,
-      output: 5.0,
-      cache_read: 0.1,
-      cache_write: 1.25,
+      input: 2.0,
+      output: 10.0,
+      cache_read: 0.2,
+      cache_write: 2.5,
     },
   },
   "claude-haiku-4-5": {
@@ -205,9 +205,20 @@ export const ONEPROVIDER_DEFAULT_MODELS: Record<string, OneProviderModelDefiniti
 export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinition> = {
   ...ONEPROVIDER_DEFAULT_MODELS,
 
-  // Additional Claude (prior generations, demoted from defaults)
+  // Additional Claude (prior generations, demoted from defaults, and thinking variants)
   "claude-opus-5": {
     name: "Claude Opus 5 (OneProvider)",
+    attachment: true,
+    tool_call: true,
+    reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
+    limit: { context: 1_048_576, output: 65_536 },
+    cost: { input: 5.0, output: 25.0, cache_read: 0.5, cache_write: 6.25 },
+  },
+  "claude-opus-5-thinking": {
+    name: "Claude Opus 5 Thinking (OneProvider)",
     attachment: true,
     tool_call: true,
     reasoning: true,
@@ -227,6 +238,49 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     },
     limit: { context: 1_048_576, output: 65_536 },
     cost: { input: 2.0, output: 10.0, cache_read: 0.2, cache_write: 2.5 },
+  },
+  "claude-sonnet-5-thinking": {
+    name: "Claude Sonnet 5 Thinking (OneProvider)",
+    attachment: true,
+    tool_call: true,
+    reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
+    limit: { context: 1_048_576, output: 65_536 },
+    cost: { input: 2.0, output: 10.0, cache_read: 0.2, cache_write: 2.5 },
+  },
+  "claude-haiku-4-5-20251001": {
+    name: "Claude Haiku 4.5 (OneProvider)",
+    attachment: false,
+    tool_call: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
+    limit: { context: 204_800, output: 8_192 },
+    cost: { input: 1.0, output: 5.0, cache_read: 0.1, cache_write: 1.25 },
+  },
+  "claude-haiku-4-5-thinking": {
+    name: "Claude Haiku 4.5 Thinking (OneProvider)",
+    attachment: false,
+    tool_call: true,
+    reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
+    limit: { context: 204_800, output: 8_192 },
+    cost: { input: 1.0, output: 5.0, cache_read: 0.1, cache_write: 1.25 },
+  },
+  "claude-haiku-4-5-20251001-thinking": {
+    name: "Claude Haiku 4.5 Thinking (OneProvider)",
+    attachment: false,
+    tool_call: true,
+    reasoning: true,
+    provider: {
+      npm: ONEPROVIDER_ANTHROPIC_NPM,
+    },
+    limit: { context: 204_800, output: 8_192 },
+    cost: { input: 1.0, output: 5.0, cache_read: 0.1, cache_write: 1.25 },
   },
   "claude-fable-5": {
     name: "Claude Fable 5 (OneProvider)",
@@ -310,6 +364,20 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     tool_call: true,
     limit: { context: 1_050_000, output: 65_536 },
     cost: { input: 0.75, output: 3.75, cache_read: 0.075, cache_write: 0.75 },
+  },
+  "gemini-3.5-flash": {
+    name: "Gemini 3.5 Flash (OneProvider)",
+    attachment: true,
+    tool_call: true,
+    limit: { context: 1_048_576, output: 65_536 },
+    cost: { input: 1.5, output: 9.0, cache_read: 0.15, cache_write: 1.5 },
+  },
+  "gemini-3.1-flash-lite": {
+    name: "Gemini 3.1 Flash Lite (OneProvider)",
+    attachment: true,
+    tool_call: true,
+    limit: { context: 1_048_576, output: 65_536 },
+    cost: { input: 0.25, output: 1.5, cache_read: 0.025, cache_write: 0.25 },
   },
   "gemini-3.1-pro": {
     name: "Gemini 3.1 Pro (OneProvider)",
@@ -489,5 +557,19 @@ export const ONEPROVIDER_EXTENDED_MODELS: Record<string, OneProviderModelDefinit
     tool_call: true,
     limit: { context: 131_072, output: 8_192 },
     cost: { input: 0.15, output: 0.47, cache_read: 0.03, cache_write: 0.1875 },
+  },
+  "qwen3.7-max": {
+    name: "Qwen 3.7 Max (OneProvider)",
+    attachment: false,
+    tool_call: true,
+    limit: { context: 131_072, output: 8_192 },
+    cost: { input: 1.65, output: 4.951, cache_read: 0.33, cache_write: 2.0625 },
+  },
+  "qwen3.7-plus": {
+    name: "Qwen 3.7 Plus (OneProvider)",
+    attachment: false,
+    tool_call: true,
+    limit: { context: 131_072, output: 8_192 },
+    cost: { input: 0.4, output: 1.6, cache_read: 0.04, cache_write: 0.4 },
   },
 };
