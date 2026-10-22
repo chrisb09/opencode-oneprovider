@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "v2/**/*", "tui/**/*"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],

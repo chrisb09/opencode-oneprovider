@@ -8,6 +8,6 @@
     "sourceMap": true,
     "allowImportingTsExtensions": false
   },
-  "include": ["src/**/*.ts", "index.ts"],
+  "include": ["src/**/*.ts", "v2/**/*.ts", "tui/**/*.ts", "index.ts"],
   "exclude": []
 }
