@@ -179,6 +179,7 @@ export default Plugin.define({
     await ctx.aisdk.hook("sdk", async (event) => {
       const packageName = sdkPackage(event.model.package ?? event.package);
       if (packageName !== ONEPROVIDER_DEFAULT_NPM && packageName !== ONEPROVIDER_ANTHROPIC_NPM) return;
+      if (event.model.providerID !== providerID) return;
 
       const baseURL =
         typeof event.options.baseURL === "string" ? event.options.baseURL : ONEPROVIDER_DEFAULT_BASE_URL;
